@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+{% block page %}<h1>Gestion utilisateurs </h1>{% endblock %}
+{% block body %}
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4>Liste des utilisateurs</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-md">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Phone</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.firstname }}</td>
+                            <td>{{ user.lastname }}</td>
+                            <td>{{ user.phone }}</td>
+                            <td>
+                                <a class="btn btn-icon btn-primary" href="{{ path('user_show', {'id': user.id}) }}"><i class="fas fa-user"></i></a>
+                                <a class="btn btn-icon btn-primary" href="{{ path('user_edit', {'id': user.id}) }}"><i class="fas fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="9">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+    <a class="btn btn-primary" href="{{ path('user_new') }}"><h> Ajouter un utilisateur</h></a>
+
+{% endblock %}

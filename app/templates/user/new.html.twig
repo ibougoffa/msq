@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block title %}New User{% endblock %}
+{% block page %}
+    <div class="section-header-back">
+        <a href="{{ path('user_index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+    </div>
+    <h1>Nouvel Utilisateur</h1>
+{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mx-auto">Formulaire d'ajout</h4>
+            </div>
+            <div class="card-body">
+                <div class="col-6 mx-auto">
+                    {{ include('user/_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,84 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block content %}
+
+
+    <div id="app">
+        <section class="section">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                        <div class="login-brand">
+                            <img alt="logo" class="img-fluid shadow-light rounded-circle" width="150" src="{{ asset('assets/img/msq.png') }}">
+                        </div>
+
+                        <div class="card card-primary">
+                            <div class="card-header"><h4>Login</h4></div>
+
+                            <div class="card-body">
+                                <form method="post">
+                                    {% if error %}
+                                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                    {% endif %}
+
+                                    {% if app.user %}
+                                        <div class="mb-3">
+                                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                        </div>
+                                    {% endif %}
+                                    <div class="form-group">
+                                        <label for="inputEmail">Email</label>
+                                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputPassword">Password</label>
+                                        <input type="password" name="password" id="inputPassword" class="form-control" required>
+                                    </div>
+                                    <input type="hidden" name="_csrf_token"
+                                           value="{{ csrf_token('authenticate') }}"
+                                    >
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                            Connexion
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="mt-5 text-muted text-center">
+                            Don't have an account? <a href="{{ path('app_register') }}">Sign up</a>
+                        </div>
+                        <div class="simple-footer">
+                            Copyright &copy; MSQ 2020
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+</form>
+{% endblock %}

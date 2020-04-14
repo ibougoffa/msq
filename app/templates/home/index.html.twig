@@ -1,0 +1,47 @@
+{% extends "base-front.html.twig" %}
+{% block content %}
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <img class="d-block w-100" src="../assets/img/banner.jpg" alt="First slide">
+                <h1 class="text-center pt-5">A la une</h1>
+
+                <div class="row">
+                    {% for post in posts %}
+                        <div class="col-sm-6 col-md-4 col-lg-4">
+                            <article class="article">
+                                <div class="article-header">
+                                    <div class="article-image" data-background="../assets/img/news/img08.jpg">
+                                    </div>
+                                    <div class="article-title">
+                                        <h2><a href="{{ path('post_show', {'id': post.id}) }}">{{post.name}}</a></h2>
+                                    </div>
+                                </div>
+                                <div class="article-details">
+                                    <p>{{post.content}} </p>
+                                    <div class="article-cta">
+                                        <a href="{{ path('post_show', {'id': post.id}) }}" class="btn btn-primary">Read More</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="col-12 mb-4">
+                    <div class="hero text-white hero-bg-image" data-background="../assets/img/unsplash/eberhard-grossgasteiger-1207565-unsplash.jpg">
+                        <div class="hero-inner">
+                            <h2>Abonnez vous à notre newsletter</h2>
+                            <p class="lead">You almost arrived, complete the information about your account to complete registration.</p>
+                            <div class="mt-4">
+                                <a href="#" class="btn btn-outline-white btn-lg btn-icon icon-left"><i class="far fa-user"></i> Setup Account</a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
